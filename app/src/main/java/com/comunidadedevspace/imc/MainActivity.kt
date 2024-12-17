@@ -1,5 +1,6 @@
 package com.comunidadedevspace.imc
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -11,19 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Recuoerar os componentes EditText
-        // Criar uma variável e associar (=) o componente de UI<TextInputLayout>
-        // Recuperar o botao da tela
-
-        // Colocar ação no botão
-        // Recuperar o texto digitado no edt peso
-
         val edtPeso = findViewById<TextInputEditText>(R.id.edt_peso)
         val edtAltura = findViewById<TextInputEditText>(R.id.edt_altura)
 
         val btnCalcular = findViewById<Button>(R.id.btn_calcular)
-
-
 
         btnCalcular.setOnClickListener {
 
@@ -32,8 +24,6 @@ class MainActivity : AppCompatActivity() {
             val alturaStr: String = edtAltura.text.toString()
 
             if(pesoStr == "" || alturaStr == ""){
-                // Mostrar mensagem para o usuário
-
                 Snackbar
                     .make(
                         edtPeso,
@@ -48,6 +38,16 @@ class MainActivity : AppCompatActivity() {
 
                 val altura02 = altura * altura
                 val resultado = peso / altura02
+
+                // Navegar para a próxima tela
+                // Criar o layout da próxima tela
+                // Passar dados para a próxima tela
+
+                // Intent - Classe do próprio Android
+
+                val intent = Intent(this, ResultActivity::class.java)
+                intent.putExtra(KEY_RESULT_IMC, resultado)
+                startActivity(intent)
 
                 println("Seu índice IMC é: " + resultado)
             }
